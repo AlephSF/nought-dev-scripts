@@ -23,14 +23,15 @@ specific context that you are running the command. For example, WordPress dev en
 ```sh
 # WordPress Environment Commands
 wp build # Builds a Docker image from your local Dockerfile
-wp cli -c "cli command here" # Run any WP CLI command in your running container
+wp cli -c "<WP CLI Command>" # Run any WP CLI command in your running container
 wp dev # Builds and then runs your container as specified in docker-compose.yml
 wp shell # Opens a bash shell inside your running container
 wp start # Starts the Docker image as specified in docker-compose.yml
 wp stop # Stops your Docker compose stack
+wp theme-build <theme-dir> (--production) (--watch) # Pulls deps and builds your theme 
 
 # Local Database Commands
-localDb dump # Dumps your running MySQL database to /dumps/local_dump.sql
-localDb open # Opens your running MySQL DB in Sequel Pro
-localDb restore # Restores your local DB from /dumps/local_dump.sql
+local-db dump # Dumps your running MySQL database to /dumps/local_dump.sql
+local-db open # Opens your running MySQL DB in Sequel Pro
+local-db restore # Restores your local DB from /dumps/local_dump.sql
 ```
