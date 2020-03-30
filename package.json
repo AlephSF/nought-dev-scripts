@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Helper scripts for local dev environments at Aleph",
   "main": "./lib/index.js",
+  "files": [
+    "/lib",
+    "/bash"
+  ],
   "bin": {
     "nds": "./lib/index.js"
   },
