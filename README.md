@@ -30,7 +30,7 @@ wp start # Starts the Docker image as specified in docker-compose.yml
 wp stop # Stops your Docker compose stack
 
 # Local Database Commands
-db dump # Dumps your running MySQL database to /dumps/local_dump.sql
-db open # Opens your running MySQL DB in Sequel Pro
-db restore # Restores your local DB from /dumps/local_dump.sql
+localDb dump # Dumps your running MySQL database to /dumps/local_dump.sql
+localDb open # Opens your running MySQL DB in Sequel Pro
+localDb restore # Restores your local DB from /dumps/local_dump.sql
 ```
