@@ -1,0 +1,43 @@
+{
+  "name": "@aleph/nought-dev-scripts",
+  "version": "0.0.0",
+  "description": "Helper scripts for local dev environments at Aleph",
+  "main": "./lib/index.js",
+  "bin": {
+    "nds": "./lib/index.js"
+  },
+  "scripts": {
+    "compile": "babel src --out-dir lib",
+    "prepublish": "yarn compile",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlephSF/nought-dev-scripts.git"
+  },
+  "keywords": [
+    "Aleph",
+    "scripts",
+    "dev"
+  ],
+  "author": "Matt Glaser <matt@alephsf.com> (https://alephsf.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlephSF/nought-dev-scripts/issues"
+  },
+  "homepage": "https://github.com/AlephSF/nought-dev-scripts#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1"
+  },
+  "dependencies": {
+    "node-env-run": "^3.0.2",
+    "shelljs": "^0.8.3",
+    "yargs": "^15.3.1"
+  }
+}
