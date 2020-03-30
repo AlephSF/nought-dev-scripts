@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "node-env-run": "^3.0.2",
+    "semver-compare": "^1.0.0",
     "shelljs": "^0.8.3",
     "yargs": "^15.3.1"
   }
