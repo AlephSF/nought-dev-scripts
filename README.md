@@ -21,6 +21,9 @@ All commands below must be prefaced with `yarn nds`. most commands have a prefix
 specific context that you are running the command. For example, WordPress dev environments will use `wp`, stuff to manipulate databases will be `db`, etc. 
 
 ```sh
+release # Pushes new semantic version to Github, creating a release
+version # Creates a new semantic version from master branch
+
 # WordPress Environment Commands
 wp build # Builds a Docker image from your local Dockerfile
 wp cli -c "<WP CLI Command>" # Run any WP CLI command in your running container
@@ -31,7 +34,11 @@ wp stop # Stops your Docker compose stack
 wp theme-build <theme-dir> (--production) (--watch) # Pulls deps and builds your theme 
 
 # Local Database Commands
-local-db dump # Dumps your running MySQL database to /dumps/local_dump.sql
+local-db dump # Dumps your running MySQL database to /dumps/local_dump.sql.gz
 local-db open # Opens your running MySQL DB in Sequel Pro
-local-db restore # Restores your local DB from /dumps/local_dump.sql
+local-db restore # Restores your local DB from /dumps/local_dump.sql.gz
+
+# Remote Database Commands
+remote-db dump # Runs a dump of a prod database to a GCS Bucket
+remote-db sync # Syncs latest dump from prod in GCS bucket to an env
 ```

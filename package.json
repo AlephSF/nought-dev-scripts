@@ -40,7 +40,11 @@
     "eslint-plugin-import": "^2.20.1"
   },
   "dependencies": {
+    "@google-cloud/storage": "^4.7.0",
+    "google-auth-library": "^6.0.0",
+    "googleapis": "^48.0.0",
     "node-env-run": "^3.0.2",
+    "replacestream": "^4.0.3",
     "semver-compare": "^1.0.0",
     "shelljs": "^0.8.3",
     "yargs": "^15.3.1"

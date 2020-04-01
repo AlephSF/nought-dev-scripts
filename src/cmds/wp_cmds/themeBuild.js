@@ -17,6 +17,7 @@ exports.handler = (argv) => {
   let cmd = `cd web/app/themes/${argv.directory}`;
   // Sage 9
   if (cmp(themeVersion, '9.0.0') !== -1 && argv.type === 'sage') {
+    cmd = argv.composer ? `${cmd} && composer install` : '';
     cmd = `${cmd} && yarn && yarn build`;
     cmd = argv.production ? `${cmd}:production` : cmd;
     cmd = argv.watch ? `${cmd} && yarn start` : cmd;
