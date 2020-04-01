@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.4...v0.0.5) (2020-04-01)
+
+
+### Bug Fixes
+
+* Remove lib, add k8s command ([c1acff3](https://github.com/AlephSF/nought-dev-scripts/commit/c1acff35e17132fa617d4f73a55b5052b394662d))
+
 ### [0.0.4](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.3...v0.0.4) (2020-04-01)
 
 
