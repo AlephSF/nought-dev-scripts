@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.6...v0.0.7) (2020-04-03)
+
+
+### Features
+
+* **wp:** Add get-secrets command ([f18d245](https://github.com/AlephSF/nought-dev-scripts/commit/f18d245ec0261c4130e52059eb3934a006f9cfe5))
+
 ### [0.0.6](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.5...v0.0.6) (2020-04-03)
 
 
