@@ -10,7 +10,7 @@ import path from 'path';
 
 const sqladmin = google.sql('v1beta4');
 
-exports.command = 'sync [target]';
+exports.command = 'pull [target]';
 exports.desc = 'Import the latest dump to a target DB';
 exports.builder = (yargs) => {
   yargs.positional('target', {

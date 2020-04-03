@@ -9,7 +9,6 @@ exports.builder = {
   },
 };
 exports.handler = (argv) => {
-  // eslint-disable-next-line no-unused-expressions
   exec(`docker-compose exec -T wordpress wp --allow-root ${argv.command}`, { stdio: 'inherit' }, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);

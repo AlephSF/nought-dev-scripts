@@ -23,6 +23,5 @@ exports.handler = (argv) => {
     cmd = argv.watch ? `${cmd} && yarn start` : cmd;
   }
 
-  // eslint-disable-next-line no-unused-expressions
   exec(cmd).stdout;
 };

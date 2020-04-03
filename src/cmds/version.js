@@ -5,6 +5,5 @@ exports.desc = 'Automatically generate a semantic version from the latest on mas
 exports.builder = {};
 
 exports.handler = () => {
-  // eslint-disable-next-line no-unused-expressions
   exec('git checkout master && git pull origin master && standard-version').stdout;
 };

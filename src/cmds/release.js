@@ -7,6 +7,5 @@ exports.builder = {};
 exports.handler = (argv) => {
   let cmd = 'git push --follow-tags origin master';
   cmd = argv.npm ? `${cmd} && npm publish` : cmd;
-  // eslint-disable-next-line no-unused-expressions
   exec(cmd).stdout;
 };

@@ -21,6 +21,5 @@ exports.handler = (argv) => {
     cmd = `${cmd} --build-arg ${argv.buildArgs} `;
   }
   cmd = `${cmd}-t ${projectName} .`;
-  // eslint-disable-next-line no-unused-expressions
   exec(cmd).stdout;
 };
