@@ -25,6 +25,7 @@ version # Creates a new semantic version from master branch
 wp build # Builds a Docker image from your local Dockerfile
 wp cli -c "<WP CLI Command>" # Run any WP CLI command in your running container
 wp dev # Builds and then runs your container as specified in docker-compose.yml
+wp get-secrets # Retrieves any dev secrets and sets them in an .env file for you
 wp shell # Opens a bash shell inside your running container
 wp start # Starts the Docker image as specified in docker-compose.yml
 wp stop # Stops your Docker compose stack
@@ -88,6 +89,8 @@ Once you have this software installed, you'll need to set up your Google Credent
 been granted access to a project, this is usually as easy as running `gcloud init` or and setting some
 sensible defaults, like project and zone. 
 
+**NB!** You may have to auth in using `gcloud auth application-default login` to use these tools.  
+
 If you have one or more Kubernetes clusters in GKE that you'd like to use these tools with, you'll 
 need to use `gcloud container clusters get-credentials ...` to make the cluster context available on your
 local machine. 
@@ -103,3 +106,4 @@ information is available in a `package.json` `config` block to run certain comma
     "gcpProjectName": "your-gcp-project-name"
   },
 ```
+

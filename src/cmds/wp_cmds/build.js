@@ -11,7 +11,7 @@ exports.builder = {
 exports.handler = (argv) => {
   const projectName = exec("printf \"%s\" \"$(node -p \"require('./package.json').name\")\"", { silent: true }).stdout;
   let cmd;
-  cmd = argv.buildSecrets !== false ? 'set -o allexport; source secrets/buildtime.secrets; set +o allexport && ' : '';
+  cmd = argv.buildSecrets !== false ? 'set -o allexport; source .env; set +o allexport && ' : '';
   cmd = `${cmd}docker build `;
   if (Array.isArray(argv.buildArgs)) {
     argv.buildArgs.forEach((buildArg) => {
