@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.7...v0.0.8) (2020-04-06)
+
+
+### Bug Fixes
+
+* Change path of build source ([2d63d7a](https://github.com/AlephSF/nought-dev-scripts/commit/2d63d7a0d2dc4d1a7c149f0fe7fc1406a21a210d))
+
 ### [0.0.7](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.6...v0.0.7) (2020-04-03)
 
 
