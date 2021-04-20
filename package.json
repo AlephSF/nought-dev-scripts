@@ -1,6 +1,6 @@
 {
   "name": "@aleph/nought-dev-scripts",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Helper scripts for local dev environments at Aleph",
   "main": "./lib/index.js",
   "files": [
