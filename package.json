@@ -1,6 +1,6 @@
 {
   "name": "@aleph/nought-dev-scripts",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Helper scripts for local dev environments at Aleph",
   "main": "./lib/index.js",
   "files": [
@@ -35,19 +35,26 @@
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.13.13",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.1"
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-react": "^7.23.2"
   },
   "dependencies": {
     "@google-cloud/secret-manager": "^2.1.0",
     "@google-cloud/storage": "^4.7.0",
     "google-auth-library": "^6.0.0",
     "googleapis": "^48.0.0",
+    "ink": "^3.0.8",
+    "ink-big-text": "^1.2.0",
+    "ink-gradient": "^2.0.0",
     "node-env-run": "^3.0.2",
+    "react": "^17.0.2",
     "replacestream": "^4.0.3",
     "semver-compare": "^1.0.0",
     "shelljs": "^0.8.3",
+    "strip-ansi": "^7.0.0",
     "yargs": "^15.3.1"
   }
 }
