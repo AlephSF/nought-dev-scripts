@@ -1,7 +1,7 @@
 {
   "name": "@aleph/nought-dev-scripts",
   "version": "0.0.10",
-  "description": "Helper scripts for local dev environments at Aleph",
+  "description": "The Aleph (N)ought (D)ev (S)cripts",
   "main": "./lib/index.js",
   "files": [
     "/lib",
@@ -11,7 +11,7 @@
     "nds": "./lib/index.js"
   },
   "scripts": {
-    "compile": "babel src --out-dir lib",
+    "compile": "babel src --copy-files --out-dir lib",
     "prepublish": "yarn compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -46,15 +46,16 @@
     "@google-cloud/storage": "^4.7.0",
     "google-auth-library": "^6.0.0",
     "googleapis": "^48.0.0",
+    "image-to-ascii": "^3.0.13",
     "ink": "^3.0.8",
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
+    "ink-text-input": "^4.0.1",
+    "meow": "^9.0.0",
     "node-env-run": "^3.0.2",
     "react": "^17.0.2",
     "replacestream": "^4.0.3",
     "semver-compare": "^1.0.0",
-    "shelljs": "^0.8.3",
-    "strip-ansi": "^7.0.0",
-    "yargs": "^15.3.1"
+    "shelljs": "^0.8.3"
   }
 }
