@@ -45,12 +45,16 @@ const ascii = `88888888888888888888888888888888888888888888888888888888888888888
 `
 
 const Logo = () => {
+	const [asciiLogo, setAsciiLogo] = useState(ascii);
 	const [showLogo, setShowLogo] = useState(false);
 	const [query, setQuery] = useState([''])
 
 	const handleSubmit = (query) => {
-		if(query === 'YEAH!'){
-			setShowLogo(true)
+		if(query !== 'YEAH!'){
+			setAsciiLogo('N E V E R M I N D   O K   B Y E')
+			setShowLogo('bye')
+		} else {
+			setShowLogo('logo')
 		}
 	};
 	return (
@@ -66,12 +70,14 @@ const Logo = () => {
 				<TextInput value={query} onChange={setQuery} onSubmit={handleSubmit} />
 			</Box>}
 			{showLogo && <Box justifyContent="center" width="70%">
-				<Gradient name="atlas">{ascii}</Gradient>
+				<Gradient name="atlas">{asciiLogo}</Gradient>
 			</Box>
 			}
-			{showLogo && <Box justifyContent="center" paddingBottom="2" width="70%">
-				<Gradient name="pastel">
-					"Build web-based experiences that reflect the best parts of ourselves, and support positive change in the world you inhabit."
+			{showLogo === 'logo' && <Box justifyContent="center" paddingBottom="2" width="70%">
+				<Gradient name="atlas">
+					"Build experiences that reflect the best parts of yourself,
+					<Newline />
+					and support positive change in the world you inhabit."
 				</Gradient>
 			</Box>}
 		</>

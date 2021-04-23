@@ -3,7 +3,7 @@ import React from 'react'
 import { render } from 'ink'
 import meow from 'meow'
 import Hi from './components/Hi'
-import Init from './components/Init'
+import Build from './components/Build'
 import Logo from './components/Logo'
 
 const prop = k => o => o[k]
@@ -21,23 +21,35 @@ const nds = () => ({
 	action: () => render(<Hi />)
 })
 
-nds.init = () => ({
+// nds.init = () => ({
+// 	cli: meow(`
+// 			Usage
+// 				$ nds init
+
+// 			Description
+// 				Initializes NDS configs in an existing project directory.
+// 	`),
+// 	action: () => render(<Init />)
+// })
+
+nds.build = () => ({
 	cli: meow(`
 			Usage
-					$ nds init
+				$ nds build
+
 			Description
-					Initializes NDS configs in an existing project directory.
+				Builds your project for production, locally.
 	`),
-	action: () => render(<Init />)
+	action: () => render(<Build />)
 })
 
 nds.logo = () => ({
 	cli: meow(`
 			Usage
-					$ nds logo
+				$ nds logo
 
-				Description
-					Show the Aleph Logo.
+			Description
+				Show the Aleph Logo.
 	`),
 	action: () => render(<Logo />)
 })

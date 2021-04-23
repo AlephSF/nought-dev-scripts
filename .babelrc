@@ -9,5 +9,10 @@
                 }
             }
         ]
-    ]
+    ],
+    "env": {
+        "production": {
+            "plugins": ["@babel/plugin-transform-modules-commonjs"]
+        }
+    }
 }
