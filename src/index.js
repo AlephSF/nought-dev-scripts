@@ -2,9 +2,12 @@
 import React from 'react'
 import { render } from 'ink'
 import meow from 'meow'
-import Hi from './components/Hi'
-import Build from './components/Build'
-import Logo from './components/Logo'
+import Hi from './Hi'
+
+import build from './cmds/build'
+import logo from './cmds/logo'
+import start from './cmds/start'
+import stop from './cmds/stop'
 
 const prop = k => o => o[k]
 const pipe = (...fns) => x => [...fns].reduce((acc, f) => f(acc), x)
@@ -21,38 +24,10 @@ const nds = () => ({
 	action: () => render(<Hi />)
 })
 
-// nds.init = () => ({
-// 	cli: meow(`
-// 			Usage
-// 				$ nds init
-
-// 			Description
-// 				Initializes NDS configs in an existing project directory.
-// 	`),
-// 	action: () => render(<Init />)
-// })
-
-nds.build = () => ({
-	cli: meow(`
-			Usage
-				$ nds build
-
-			Description
-				Builds your project for production, locally.
-	`),
-	action: () => render(<Build />)
-})
-
-nds.logo = () => ({
-	cli: meow(`
-			Usage
-				$ nds logo
-
-			Description
-				Show the Aleph Logo.
-	`),
-	action: () => render(<Logo />)
-})
+nds.build = () => build
+nds.logo = () => logo
+nds.start = () => start
+nds.stop = () => stop
 
 const getSubcommand = (cliObject, level) => pipe(
 	prop('input'),
