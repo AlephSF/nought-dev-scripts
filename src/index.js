@@ -5,9 +5,12 @@ import meow from 'meow'
 import Hi from './Hi'
 
 import build from './cmds/build'
+import db from './cmds/db'
 import logo from './cmds/logo'
+import shell from './cmds/shell'
 import start from './cmds/start'
 import stop from './cmds/stop'
+import wp from './cmds/wp'
 
 const prop = k => o => o[k]
 const pipe = (...fns) => x => [...fns].reduce((acc, f) => f(acc), x)
@@ -25,9 +28,12 @@ const nds = () => ({
 })
 
 nds.build = () => build
+nds.db = () => db
 nds.logo = () => logo
+nds.shell = () => shell
 nds.start = () => start
 nds.stop = () => stop
+nds.wp = () => wp
 
 const getSubcommand = (cliObject, level) => pipe(
 	prop('input'),

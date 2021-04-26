@@ -13,11 +13,11 @@ export default {
 		const stop = childProcess.spawn('docker', ['compose', 'down'])
 
     stop.stdout.on('data', (data) => {
-			console.log('stdout: ' + data.toString())
+			console.log(data.toString())
     })
 
 		stop.stderr.on('data', (data) => {
-			console.log('stderr: ' + data.toString())
+			console.log(data.toString())
     })
 
 	}
