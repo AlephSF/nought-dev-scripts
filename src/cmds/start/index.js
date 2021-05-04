@@ -47,7 +47,7 @@ const Start = () => {
 		}
 
 		// run it!
-		if(projectType && existsSync('Dockerfile')){
+		if(projectType && existsSync('docker-compose.yml')){
 			shellCmd(`${cmdPrefix}docker compose up`, env)
 		}
 

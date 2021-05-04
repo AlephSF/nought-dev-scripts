@@ -8,6 +8,7 @@ import Build from './cmds/build'
 import Hi from './Hi'
 import Logo from './cmds/logo/Logo'
 import Start from './cmds/start'
+import Stop from './cmds/stop'
 
 import snakeCaseKeys from 'snakecase-keys'
 import Sync from './cmds/wp/Sync'
@@ -120,10 +121,7 @@ nds.stop = () => ({
 			Description
 				Starts your project locally.
 	`),
-	action: () => {
-		const stop = spawn('docker', ['compose', 'down'])
-		output(stop)
-	}
+	action: () => render(<Stop />)
 })
 
 nds.wp = () => ({
