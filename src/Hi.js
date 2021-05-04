@@ -3,6 +3,15 @@ import { Text, Box } from 'ink'
 import Gradient from 'ink-gradient'
 import BigText from 'ink-big-text'
 
+export const globalHelp = `
+	Usage
+	$ nds [command]
+
+	Available Commands
+	nds something
+
+`
+
 const Hi = () => {
 	return (
 		<>

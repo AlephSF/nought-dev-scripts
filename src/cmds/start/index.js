@@ -1,15 +1,64 @@
-import React from 'react'
-import { render } from 'ink'
-import meow from 'meow'
-import Start from './Start'
+import React, { useState, useEffect } from 'react'
+import { existsSync } from 'fs'
+import path from 'path'
 
-export default {
-	cli: meow(`
-			Usage
-				$ nds start
+import Ask from '../config/Ask'
+import ErrorMsg from '../error'
 
-			Description
-				Starts your project locally.
-	`),
-	action: () => render(<Start />)
-}
+import getConfig, { setConfig } from '../../utils/config'
+import getDirectories from '../../utils/getDirectories'
+import shellCmd from '../../utils/shellCmd'
+
+const projectName = path.basename(path.resolve()) 
+
+const Start = () => {
+	const [projectType, setProjectType] = useState(getConfig('projectType'))
+	const [errorMsg, setErrorMsg] = useState(false);
+
+
+	useEffect(() => {
+		if(projectType && !getConfig('projectType')){
+			// type isn't in config but we know what it is now, so set it in stone
+			setConfig({projectType})
+		}
+
+		// make sure there's a Dockerfile
+		if(projectType && !existsSync('docker-compose.yml')){
+			setErrorMsg('No docker-compose.yml present in the current directory, so I\'m gonna bail.')
+		}
+
+		// spawn('sh', ['-c', ''], { stdio: 'inherit', env: {...process.env, 'PROJECT_NAME': projectName, 'THEME_DIR': themeDirs[0]}})
+		
+		let env = {'PROJECT_NAME': projectName}
+		let cmdPrefix = ''
+		const themeDirs = getDirectories('themes') // see if there's a WP theme in here
+		switch (projectType) {
+			case 'noughtWp':
+				// Only works if there's a single dir in themes.. TODO: fix this
+				env = {'PROJECT_NAME': projectName, 'THEME_DIR': themeDirs[0]}
+				break;
+		
+			case 'wpVip':
+				cmdPrefix = 'docker compose pull && '
+				break;
+		
+			default:
+				break;
+		}
+
+		// run it!
+		if(projectType && existsSync('Dockerfile')){
+			shellCmd(`${cmdPrefix}docker compose up`, env)
+		}
+
+	}, [projectType])
+
+	return (
+		<>
+			{projectType ? null : <Ask configKey='projectType' setValue={setProjectType} />}
+			{errorMsg && <ErrorMsg msg={errorMsg} />}
+		</>
+	);
+};
+
+export default Start

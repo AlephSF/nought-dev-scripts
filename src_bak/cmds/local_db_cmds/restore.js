@@ -11,3 +11,4 @@ exports.builder = {
 exports.handler = (argv) => {
   exec(`cat ${argv.file} | zcat | docker-compose exec -T db /usr/bin/mysql -u wordpress --password=wordpress wordpress`);
 };
+ 

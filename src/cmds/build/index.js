@@ -1,39 +1,56 @@
-import React from 'react'
-import { render } from 'ink'
-import meow from 'meow'
-import Build from './Build'
-import { exec } from 'child_process'
-import fs from 'fs'
+import React, { useState, useEffect } from 'react'
+import { existsSync } from 'fs'
 import path from 'path'
 
-// good candidate for a util
-const getDirectories = srcPath => fs.readdirSync(srcPath).filter(file => fs.statSync(path.join(srcPath, file)).isDirectory())
+import Ask from '../config/Ask'
+import ErrorMsg from '../error'
+
+import getConfig, { setConfig } from '../../utils/config'
+import getDirectories from '../../utils/getDirectories'
+import shellCmd from '../../utils/shellCmd'
+
 const projectName = path.basename(path.resolve()) 
-// get the theme directory (only works if there's a single dir in themes.. TODO: fix this)
-const themeDirs = getDirectories('themes')
 
-export default {
-	cli: meow(`
-			Usage
-				$ nds build
+const Build = () => {
+	const [projectType, setProjectType] = useState(getConfig('projectType'))
+	const [errorMsg, setErrorMsg] = useState(false);
 
-			Description
-				Builds your project for production, locally.
-	`),
-	action: () => {
-		const build = exec(`docker build --build-arg PHP_ENV=dev --build-arg THEME_SLUG=${themeDirs[0]} -t ${projectName} .`, { stdio: 'inherit' })
+	useEffect(() => {
+		if(projectType && !getConfig('projectType')){
+			// type isn't in config but we know what it is now, so set it in stone
+			setConfig({projectType})
+		}
 
-		build.stdout.on('data', function (data) {
-			console.log(data.toString());
-		});
+		// make sure there's a Dockerfile
+		if(projectType && !existsSync('Dockerfile')){
+			setErrorMsg('No Dockerfile present in the current directory, so I\'m gonna bail.')
+		}
+
+		// Set build args if we need them
+		let buildArgs = ''
+		const themeDirs = getDirectories('themes') // see if there's a WP theme in here
+		switch (projectType) {
+			case 'noughtWp':
+				// Only works if there's a single dir in themes.. TODO: fix this
+				buildArgs = themeDirs ? ` --build-arg PHP_ENV=dev --build-arg THEME_SLUG=${themeDirs[0]}` : ' '
+				break;
 		
-		build.stderr.on('data', function (data) {
-			console.log(data.toString());
-		});
-		
-		build.on('exit', function (code) {
-			console.log('child process exited with code ' + code.toString());
-		});
-	}
-	// action: () => render(<Build />)
-}
+			default:
+				break;
+		}
+		// run it!
+		if(projectType && existsSync('Dockerfile')){
+			shellCmd(`docker build${buildArgs} -t ${projectName} .`)
+		}
+
+	}, [projectType]);
+
+	return (
+		<>
+			{projectType ? null : <Ask configKey='projectType' setValue={setProjectType} />}
+			{errorMsg && <ErrorMsg msg={errorMsg} />}
+		</>
+	)
+};
+
+export default Build
