@@ -5,13 +5,15 @@ import meow from 'meow'
 import chalk from 'chalk'
 
 // commands via components
-import Build from './cmds/build'
+import Build, { buildInfo } from './cmds/build'
 import Db, { dbInfo } from './cmds/db'
-import Hi from './Hi'
+import Nds from './cmds/nds'
 import Logo from './cmds/logo/Logo'
 import Start, { startInfo } from './cmds/start'
 import Stop from './cmds/stop'
+
 const listedCmds = [
+	buildInfo,
 	dbInfo,
 	startInfo,
 ]
@@ -28,29 +30,29 @@ const nds = () => {
 	listedCmds.forEach((cmdInfo) => {
 		subCmdList = subCmdList + chalk`{bold ${cmdInfo.name}}		{dim ${cmdInfo.desc}}\n`
 	})
-	return {
-	cli: meow(chalk`
+
+const globalHelp = chalk`
 {cyan.dim Usage}
 {bold nds} {dim [subcommands]}
 
 {cyan.dim Available subcommands}
 ${subCmdList}
-{bold build}		{dim Build a project's Docker image}
 {bold shell}		{dim Shell into your project's running Docker container}
 {bold stop}		{dim Stop the running Docker Compose stack}
 {bold wp}		{dim WordPress-specific operations}
 
 {cyan.dim Global Flags}
 {bold --help}	{dim Get help for any command}
-	`),
-	action: () => render(<Hi />)
+	`
+return {
+	cli: meow(globalHelp),
+	action: () => render(<Nds helpText={globalHelp} />)
 }}
 
 nds.build = () => ({
-	cli: meow(`
-			Usage
-			nds	build	Builds your project from a Dockerfile
-	`),
+	cli: meow(buildInfo.help, {
+		description: chalk`{bold.cyan "${buildInfo.name}"} {cyan.dim ${buildInfo.desc}}`,
+	}),
 	action: () => render(<Build />)
 })
 

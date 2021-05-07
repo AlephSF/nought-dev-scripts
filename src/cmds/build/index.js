@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import chalk from 'chalk'
 import { existsSync } from 'fs'
 import path from 'path'
 
@@ -8,6 +9,15 @@ import ErrorMsg from '../error'
 import getConfig, { setConfig } from '../../utils/config'
 import getDirectories from '../../utils/getDirectories'
 import shellCmd from '../../utils/shellCmd'
+
+export const buildInfo = {
+	name: 'build',
+	desc: 'Builds your project from a Dockerfile.',
+	help: chalk`
+{cyan.dim Usage}
+{bold nds build}
+`
+}
 
 const projectName = path.basename(path.resolve()) 
 

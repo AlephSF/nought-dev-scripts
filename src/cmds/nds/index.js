@@ -1,18 +1,9 @@
 import React from 'react'
-import { Text, Box } from 'ink'
+import { Box, Text } from 'ink'
 import Gradient from 'ink-gradient'
 import BigText from 'ink-big-text'
 
-export const globalHelp = `
-	Usage
-	$ nds [command]
-
-	Available Commands
-	nds something
-
-`
-
-const Hi = () => {
+const Nds = ({helpText}) => {
 	return (
 		<>
 			<Box justifyContent="center" width="70%">
@@ -25,8 +16,11 @@ const Hi = () => {
 					The Aleph (N)ought (D)ev (S)cripts
 				</Gradient>
 			</Box>
+			<Box paddingBottom="2" width="70%">
+				<Text>{helpText}</Text>
+			</Box>
 		</>
 	);
 };
 
-export default Hi
+export default Nds
