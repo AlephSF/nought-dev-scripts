@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.10...v0.0.11) (2021-05-07)
+
+
+### Features
+
+* Add logo command ([732783f](https://github.com/AlephSF/nought-dev-scripts/commit/732783f65e313843a9608ada4237d0a45a2634bb))
+* Add WP Sync commands ([8ab6cc4](https://github.com/AlephSF/nought-dev-scripts/commit/8ab6cc43de2d2b07b8c30b46d1247e9a1ba77b32))
+
+
+### Bug Fixes
+
+* Add Docker build ([eecd677](https://github.com/AlephSF/nought-dev-scripts/commit/eecd677b4aea819d1d3b0c95ad8fd7e03a76778a))
+* Change file name to correct path ([59843df](https://github.com/AlephSF/nought-dev-scripts/commit/59843df23c9eb4c5a5f11208fe7213fd56c7d0ee))
+* Prep for global usage ([3ea1e93](https://github.com/AlephSF/nought-dev-scripts/commit/3ea1e933e919c49ea3b0bab46965881e32c55c85))
+* Reorganize cmds ([5bf80d5](https://github.com/AlephSF/nought-dev-scripts/commit/5bf80d5949f45eb9a432a94442c9f40e29911c58))
+* Reorganize command structure ([75b8041](https://github.com/AlephSF/nought-dev-scripts/commit/75b804123b7ef782afb4f889bfc1130c8b4f1d31))
+
 ### [0.0.10](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.9...v0.0.10) (2021-04-20)
 
 ### [0.0.9](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.8...v0.0.9) (2021-04-20)
