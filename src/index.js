@@ -8,7 +8,8 @@ import chalk from 'chalk'
 import Build, { buildInfo } from './cmds/build'
 import Db, { dbInfo } from './cmds/db'
 import Nds from './cmds/nds'
-import Logo from './cmds/logo/Logo'
+import Logo, { logoInfo } from './cmds/logo'
+import Shell, { shellInfo } from './cmds/shell'
 import Start, { startInfo } from './cmds/start'
 import Stop from './cmds/stop'
 
@@ -64,29 +65,17 @@ nds.db = () => ({
 })
 
 nds.logo = () => ({
-	cli: meow(`
-			Usage
-				$ nds logo
-
-			Description
-				Show the Aleph Logo.
-	`),
+	cli: meow(logoInfo.help, {
+		description: chalk`{bold.cyan "${logoInfo.name}"} {cyan.dim ${logoInfo.desc}}`,
+	}),
 	action: () => render(<Logo />)
 })
 
 nds.shell = () => ({
-	cli: meow(`
-			Usage
-				$ nds shell [container (Default: wordpress)]
-
-			Description
-				Shell into the current Docker container.
-	`),
-	action: ({input}) => {
-		const container = input.length > 1 ? input[1] : 'wordpress'
-
-		spawn(`docker-compose exec ${container} bash`, { stdio: 'inherit', shell: true })
-	}
+	cli: meow(shellInfo.help, {
+		description: chalk`{bold.cyan "${shellInfo.name}"} {cyan.dim ${shellInfo.desc}}`,
+	}),
+	action: ({input}) => render(<Shell input={input} />)
 })
 
 nds.start = () => ({
