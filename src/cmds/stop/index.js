@@ -6,7 +6,6 @@ import Ask from '../config/Ask'
 import ErrorMsg from '../error'
 
 import getConfig, { setConfig } from '../../utils/config'
-import getDirectories from '../../utils/getDirectories'
 import shellCmd from '../../utils/shellCmd'
 
 const projectName = path.basename(path.resolve()) 

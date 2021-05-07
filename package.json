@@ -45,6 +45,7 @@
   "dependencies": {
     "@google-cloud/secret-manager": "^2.1.0",
     "@google-cloud/storage": "^4.7.0",
+    "chalk": "^4.1.1",
     "google-auth-library": "^6.0.0",
     "googleapis": "^48.0.0",
     "ink": "^3.0.8",

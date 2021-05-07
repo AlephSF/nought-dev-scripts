@@ -2,13 +2,19 @@
 import React from 'react'
 import { render } from 'ink'
 import meow from 'meow'
+import chalk from 'chalk'
 
 // commands via components
 import Build from './cmds/build'
+import Db, { dbInfo } from './cmds/db'
 import Hi from './Hi'
 import Logo from './cmds/logo/Logo'
-import Start from './cmds/start'
+import Start, { startInfo } from './cmds/start'
 import Stop from './cmds/stop'
+const listedCmds = [
+	dbInfo,
+	startInfo,
+]
 
 import snakeCaseKeys from 'snakecase-keys'
 import Sync from './cmds/wp/Sync'
@@ -17,63 +23,42 @@ import output from './utils/output'
 const prop = k => o => o[k]
 const pipe = (...fns) => x => [...fns].reduce((acc, f) => f(acc), x)
 
-const nds = () => ({
-	cli: meow(`
-			Usage
-			$ nds [command]
-			Available Commands
-			$ nds publish
-			$ nds latest
+const nds = () => {
+	let subCmdList = ''
+	listedCmds.forEach((cmdInfo) => {
+		subCmdList = subCmdList + chalk`{bold ${cmdInfo.name}}		{dim ${cmdInfo.desc}}\n`
+	})
+	return {
+	cli: meow(chalk`
+{cyan.dim Usage}
+{bold nds} {dim [subcommands]}
+
+{cyan.dim Available subcommands}
+${subCmdList}
+{bold build}		{dim Build a project's Docker image}
+{bold shell}		{dim Shell into your project's running Docker container}
+{bold stop}		{dim Stop the running Docker Compose stack}
+{bold wp}		{dim WordPress-specific operations}
+
+{cyan.dim Global Flags}
+{bold --help}	{dim Get help for any command}
 	`),
-	// action: cli => cli.showHelp(),
 	action: () => render(<Hi />)
-})
+}}
 
 nds.build = () => ({
 	cli: meow(`
 			Usage
-				$ nds build
-
-			Description
-				Builds your project for production, locally.
+			nds	build	Builds your project from a Dockerfile
 	`),
 	action: () => render(<Build />)
 })
 
 nds.db = () => ({
-	cli: meow(`
-			Usage
-				$ nds db
-
-			Description
-				Open local database in SQL Pro.
-	`),
-	action: ({input, flags, showHelp}) => {
-		
-		if(input.length < 2){
-			showHelp()
-		}
-
-		let dbCmd
-		switch (input[1]) {
-			case 'open':
-				dbCmd = exec(`${__dirname}/cmds/db/db-open.sh`)
-				break;
-			
-			case 'dump':
-				dbCmd = exec('docker-compose exec -T db /usr/bin/mysqldump -u wordpress --password=wordpress wordpress > dumps/local_dump.sql && gzip -f dumps/local_dump.sql')
-				break;
-
-			case 'import':
-				dbCmd = exec(`cat dumps/local_dump.sql.gz | zcat | docker-compose exec -T db /usr/bin/mysql -u wordpress --password=wordpress wordpress`)
-				break;
-
-			default:
-				showHelp()
-				break;
-		}
-		output(dbCmd)
-	}
+	cli: meow(dbInfo.help, {
+		description: chalk`{bold.cyan "${dbInfo.name}"} {cyan.dim ${dbInfo.desc}}`,
+	}),
+	action: ({input, flags, showHelp}) => render(<Db input={input} flags={flags} showHelp={showHelp} />)
 })
 
 nds.logo = () => ({
@@ -103,13 +88,9 @@ nds.shell = () => ({
 })
 
 nds.start = () => ({
-	cli: meow(`
-			Usage
-				$ nds start
-
-			Description
-				Starts your project locally.
-	`),
+	cli: meow(startInfo.help, {
+		description: chalk`{bold.cyan "${startInfo.name}"} {cyan.dim ${startInfo.desc}}`,
+	}),
 	action: () => render(<Start />)
 })
 

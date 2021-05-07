@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import chalk from 'chalk'
 import { existsSync } from 'fs'
 import path from 'path'
 
@@ -8,6 +9,15 @@ import ErrorMsg from '../error'
 import getConfig, { setConfig } from '../../utils/config'
 import getDirectories from '../../utils/getDirectories'
 import shellCmd from '../../utils/shellCmd'
+
+export const startInfo = {
+	name: 'start',
+	desc: 'Start your project as a Docker Compose stack.',
+	help: chalk`
+{cyan.dim Usage}
+{bold nds start}
+`
+}
 
 const projectName = path.basename(path.resolve()) 
 
