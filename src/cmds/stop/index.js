@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import chalk from 'chalk'
 import { existsSync } from 'fs'
-import path from 'path'
 
 import Ask from '../config/Ask'
 import ErrorMsg from '../error'
@@ -8,7 +8,15 @@ import ErrorMsg from '../error'
 import getConfig, { setConfig } from '../../utils/config'
 import shellCmd from '../../utils/shellCmd'
 
-const projectName = path.basename(path.resolve()) 
+export const stopInfo = {
+	name: 'stop',
+	desc: 'Stop the currently running Docker stack.',
+	help: chalk`
+{cyan.dim Usage}
+{bold nds stop}
+`
+}
+
 
 const Stop = () => {
 	const [projectType, setProjectType] = useState(getConfig('projectType'))

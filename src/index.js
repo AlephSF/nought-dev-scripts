@@ -11,17 +11,20 @@ import Nds from './cmds/nds'
 import Logo, { logoInfo } from './cmds/logo'
 import Shell, { shellInfo } from './cmds/shell'
 import Start, { startInfo } from './cmds/start'
-import Stop from './cmds/stop'
+import Stop, { stopInfo } from './cmds/stop'
+import Wp, { wpInfo } from './cmds/wp'
 
+// put the command info here to get it to show up in global help
 const listedCmds = [
 	buildInfo,
 	dbInfo,
 	startInfo,
+	shellInfo,
+	startInfo,
+	stopInfo,
+	wpInfo,
 ]
 
-import snakeCaseKeys from 'snakecase-keys'
-import Sync from './cmds/wp/Sync'
-import output from './utils/output'
 
 const prop = k => o => o[k]
 const pipe = (...fns) => x => [...fns].reduce((acc, f) => f(acc), x)
@@ -38,9 +41,6 @@ const globalHelp = chalk`
 
 {cyan.dim Available subcommands}
 ${subCmdList}
-{bold shell}		{dim Shell into your project's running Docker container}
-{bold stop}		{dim Stop the running Docker Compose stack}
-{bold wp}		{dim WordPress-specific operations}
 
 {cyan.dim Global Flags}
 {bold --help}	{dim Get help for any command}
@@ -86,50 +86,17 @@ nds.start = () => ({
 })
 
 nds.stop = () => ({
-	cli: meow(`
-			Usage
-				$ nds stop
-
-			Description
-				Starts your project locally.
-	`),
+	cli: meow(stopInfo.help, {
+		description: chalk`{bold.cyan "${stopInfo.name}"} {cyan.dim ${stopInfo.desc}}`,
+	}),
 	action: () => render(<Stop />)
 })
 
 nds.wp = () => ({
-	cli: meow(`
-			Usage
-				$ nds wp <command> <flags>
-
-			Description
-				Run a WP ClI command in a running Docker container in the current project.
-	`),
-	action: ({input, flags}) => {
-		if(input[1] === 'init'){
-			wpInit()
-			return
-		}
-
-		if(input[1] === 'sync'){
-			render(<Sync />)
-			return
-		}
-
-		const cliCmd = input.slice(1).join(' ')
-		const cliFlags = ['--allow-root'] // need this shazz to run in the Docker process
-		if (flags && Object.keys(flags).length !== 0 && flags.constructor === Object) {
-			for (const [key, value] of Object.entries(snakeCaseKeys(flags))) {
-				const prefix = key.length > 1 ? '--' : '-'
-				const val = value === true ? '' : `=${value}`
-				const flag = `${prefix}${key}${val}`
-				cliFlags.push(flag)
-			}
-		}
-		const flagStr = cliFlags.join(' ')
-
-		const wp = exec(`docker compose exec -T wordpress wp ${cliCmd} ${flagStr}`, { stdio: 'inherit' })
-		output(wp)
-	}
+	cli: meow(wpInfo.help, {
+		description: chalk`{bold.cyan "${wpInfo.name}"} {cyan.dim ${wpInfo.desc}}`,
+	}),
+	action: ({input, flags}) => render(<Wp input={input} flags={flags} />)
 })
 
 const getSubcommand = (cliObject, level) => pipe(

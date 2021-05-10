@@ -26,15 +26,18 @@ const forms = {
 				value: 'other'
 			}
 		]
+	},
+	migrateDbUrl: {
+		question: 'Please enter the URL from the Migrate DB settings in the env you\'d like to pull from:',
+		inputType: 'text',
 	}
 }
 
 const Ask = ({configKey, setValue}) => {
 	const input = forms[configKey]
-	const [query, setQuery] = useState([''])
-
-	const handleSubmit = (query) => {
-
+	
+	const handleInput = (query) => {
+		setValue(query)
 	};
 
 	const handleSelect = (item) => {
@@ -47,6 +50,7 @@ const Ask = ({configKey, setValue}) => {
 					{input.question}
 				</Text>
 			</Box>
+			{input.inputType === 'text' && <UncontrolledTextInput onSubmit={handleInput} />}
 			{input.inputType === 'select' && <SelectInput items={input.items} onSelect={handleSelect} />}
 		</>
 	);

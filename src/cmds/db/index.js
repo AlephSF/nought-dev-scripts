@@ -62,7 +62,8 @@ const Db = ({input, flags, showHelp}) => {
 				break;
 
 			case 'import':
-				dbCmd = `cat dumps/local_dump.sql.gz | zcat | docker-compose exec -T db /usr/bin/mysql -u ${user} --password=${pass} ${db}`
+				// TODO: Make the path and dump file dynamic
+				dbCmd = `pv dumps/local_dump.sql.gz | zcat | docker-compose exec -T db /usr/bin/mysql -u ${user} --password=${pass} ${db}`
 				break;
 
 			default:

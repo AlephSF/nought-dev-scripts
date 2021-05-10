@@ -1,23 +1,9 @@
-import { exec } from 'child_process'
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { auth } from 'google-auth-library';
+import shellCmd from '../../utils/shellCmd'
 
 const client = new SecretManagerServiceClient();
 const secretName = 'projects/aleph-infra/secrets/migrate_db_pro_key/versions/latest';
-
-const output = (process) => {
-	process.stdout.on('data', function (data) {
-		console.log(data.toString());
-	});
-	
-	process.stderr.on('data', function (data) {
-		console.log(data.toString());
-	});
-	
-	process.on('exit', function (code) {
-		console.log('child process exited with code ' + code.toString());
-	});
-}
 
 const getToken = async () => {
   const [version] = await client.accessSecretVersion({
@@ -41,7 +27,5 @@ export default async () => {
 		`nds wp config set --anchor='/**' WPMDB_LICENCE ${token}`
 	]
 	const command = commands.join(' && ')
-	
-	const init = exec(command, { stdio: 'inherit' })
-	output(init)
+	shellCmd(command)
 }
