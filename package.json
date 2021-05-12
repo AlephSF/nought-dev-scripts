@@ -61,7 +61,7 @@
     "replacestream": "^4.0.3",
     "semver-compare": "^1.0.0",
     "shelljs": "^0.8.3",
-    "snakecase-keys": "^4.0.1",
+    "snake-case": "^3.0.4",
     "strip-ansi": "^7.0.0"
   }
 }

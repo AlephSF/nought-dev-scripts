@@ -41,7 +41,7 @@ const Start = () => {
 		
 		let env = {'PROJECT_NAME': projectName}
 		let cmdPrefix = ''
-		const themeDirs = getDirectories('themes') // see if there's a WP theme in here
+		const themeDirs = projectType =='noughtWp' && getDirectories('themes') // see if there's a WP theme in here
 		switch (projectType) {
 			case 'noughtWp':
 				// Only works if there's a single dir in themes.. TODO: fix this

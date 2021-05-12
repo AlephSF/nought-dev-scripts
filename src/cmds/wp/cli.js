@@ -1,5 +1,5 @@
 import shellCmd from '../../utils/shellCmd'
-import snakeCaseKeys from 'snakecase-keys'
+import { snakeCase } from 'snake-case'
 import kebabCaseKeys from 'kebabcase-keys'
 
 // Here's a perfect storm of hackery. Meow forces all flags to come through in camelCase
@@ -21,8 +21,8 @@ export default ({input, flags}) => {
 	const cliFlags = ['--allow-root'] // need this shazz to run in the Docker process
 	if (flags && Object.keys(flags).length !== 0 && flags.constructor === Object) {
 		for (let [key, value] of Object.entries(kebabCaseKeys(flags))) {
-			if(snakeCaseTheseSillyKeys.includes(value)){
-				value = snakeCaseKeys(value)
+			if(snakeCaseTheseSillyKeys.includes(key)){
+				key = snakeCase(key)
 			}
 			const prefix = key.length > 1 ? '--' : '-'
 			const val = value === true ? '' : `=${value}`

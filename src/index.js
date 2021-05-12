@@ -7,6 +7,7 @@ import chalk from 'chalk'
 // commands via components
 import Build, { buildInfo } from './cmds/build'
 import Db, { dbInfo } from './cmds/db'
+import Hello, { helloInfo } from './cmds/hello'
 import Nds from './cmds/nds'
 import Logo, { logoInfo } from './cmds/logo'
 import Shell, { shellInfo } from './cmds/shell'
@@ -62,6 +63,20 @@ nds.db = () => ({
 		description: chalk`{bold.cyan "${dbInfo.name}"} {cyan.dim ${dbInfo.desc}}`,
 	}),
 	action: ({input, flags, showHelp}) => render(<Db input={input} flags={flags} showHelp={showHelp} />)
+})
+
+nds.hello = () => ({
+	cli: meow(helloInfo.help, {
+		description: chalk`{bold.cyan "${helloInfo.name}"} {cyan.dim ${helloInfo.desc}}`,
+	}),
+	action: ({input, flags, showHelp}) => render(<Hello input={input} flags={flags} showHelp={showHelp} />)
+})
+
+nds.hello = () => ({
+	cli: meow(helloInfo.help, {
+		description: chalk`{bold.cyan "${helloInfo.name}"} {cyan.dim ${helloInfo.desc}}`,
+	}),
+	action: ({input, flags, showHelp}) => render(<Hello input={input} flags={flags} showHelp={showHelp} />)
 })
 
 nds.logo = () => ({
