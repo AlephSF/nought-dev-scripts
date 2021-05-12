@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.12...v0.0.13) (2021-05-12)
+
+
+### Features
+
+* Add hello command ([ae1880b](https://github.com/AlephSF/nought-dev-scripts/commit/ae1880beb19aa4a2fd48e62fe86c33ecade0e325))
+
 ### [0.0.12](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.11...v0.0.12) (2021-05-07)
 
 ### [0.0.11](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.10...v0.0.11) (2021-05-07)

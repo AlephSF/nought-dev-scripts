@@ -1,6 +1,6 @@
 {
   "name": "@aleph/nought-dev-scripts",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "The Aleph (N)ought (D)ev (S)cripts",
   "main": "./lib/index.js",
   "files": [
