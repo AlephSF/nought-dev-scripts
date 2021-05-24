@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.13...v0.0.14) (2021-05-24)
+
+
+### Features
+
+* Make dump path dynamic ([9db59aa](https://github.com/AlephSF/nought-dev-scripts/commit/9db59aabf5dc9d903e40ccd516e91e90af49208d))
+
+
+### Bug Fixes
+
+* Add blank starter command ([3532fd3](https://github.com/AlephSF/nought-dev-scripts/commit/3532fd3a4d753fdf45ad0f2fe392e731409f8b5a))
+
 ### [0.0.13](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.12...v0.0.13) (2021-05-12)
 
 
