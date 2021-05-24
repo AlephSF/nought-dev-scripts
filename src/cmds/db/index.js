@@ -14,6 +14,7 @@ export const dbInfo = {
 {cyan.dim Flags}
 {bold -d} || {bold --database}	database name	{dim (Default: wordpress)}
 {bold -u} || {bold --user}		user name	{dim (Default: wordpress)}
+{bold -m} || {bold --dump}		path to dump	{dim (Default: dumps/local_dump.sql.gz)}
 {bold -p} || {bold --password}	password	{dim (Default: wordpress)}
 
 {cyan.dim Examples}
@@ -50,6 +51,7 @@ const Db = ({input, flags, showHelp}) => {
 		const user = flags.u || flags.user || 'wordpress' 
 		const pass = flags.p || flags.password || 'wordpress' 
 		const db = flags.d || flags.database || 'wordpress' 
+		const dump = flags.m || flags.dump || 'dumps/local_dump.sql.gz' 
 
 		let dbCmd
 		switch (input[1]) {
@@ -63,7 +65,7 @@ const Db = ({input, flags, showHelp}) => {
 
 			case 'import':
 				// TODO: Make the path and dump file dynamic
-				dbCmd = `pv dumps/local_dump.sql.gz | zcat | docker-compose exec -T db /usr/bin/mysql -u ${user} --password=${pass} ${db}`
+				dbCmd = `pv ${dump} | zcat | docker-compose exec -T db /usr/bin/mysql -f -u ${user} --password=${pass} ${db}`
 				break;
 
 			default:
