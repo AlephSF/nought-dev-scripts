@@ -11,6 +11,7 @@ import Hello, { helloInfo } from './cmds/hello'
 import Nds from './cmds/nds'
 import Lint, { lintInfo } from './cmds/lint'
 import Logo, { logoInfo } from './cmds/logo'
+import Project, { projectInfo } from './cmds/project'
 import Shell, { shellInfo } from './cmds/shell'
 import Start, { startInfo } from './cmds/start'
 import Stop, { stopInfo } from './cmds/stop'
@@ -21,6 +22,7 @@ const listedCmds = [
 	buildInfo,
 	dbInfo,
 	lintInfo,
+	projectInfo,
 	shellInfo,
 	startInfo,
 	stopInfo,
@@ -85,6 +87,13 @@ nds.logo = () => ({
 		description: chalk`{bold.cyan "${logoInfo.name}"} {cyan.dim ${logoInfo.desc}}`,
 	}),
 	action: () => render(<Logo />)
+})
+
+nds.project = () => ({
+	cli: meow(projectInfo.help, {
+		description: chalk`{bold.cyan "${projectInfo.name}"} {cyan.dim ${projectInfo.desc}}`,
+	}),
+	action: ({input, showHelp}) => render(<Project input={input} showHelp={showHelp}/>)
 })
 
 nds.shell = () => ({
