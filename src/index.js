@@ -6,6 +6,7 @@ import chalk from 'chalk'
 
 // commands via components
 import Build, { buildInfo } from './cmds/build'
+import CloudSql, { cloudsqlInfo } from './cmds/cloudsql'
 import Db, { dbInfo } from './cmds/db'
 import Hello, { helloInfo } from './cmds/hello'
 import Nds from './cmds/nds'
@@ -20,6 +21,7 @@ import Wp, { wpInfo } from './cmds/wp'
 // put the command info here to get it to show up in global help
 const listedCmds = [
 	buildInfo,
+	cloudsqlInfo,
 	dbInfo,
 	lintInfo,
 	projectInfo,
@@ -59,6 +61,13 @@ nds.build = () => ({
 		description: chalk`{bold.cyan "${buildInfo.name}"} {cyan.dim ${buildInfo.desc}}`,
 	}),
 	action: () => render(<Build />)
+})
+
+nds.cloudsql = () => ({
+	cli: meow(cloudsqlInfo.help, {
+		description: chalk`{bold.cyan "${cloudsqlInfo.name}"} {cyan.dim ${cloudsqlInfo.desc}}`,
+	}),
+	action: ({input, flags, showHelp}) => render(<CloudSql input={input} flags={flags} showHelp={showHelp} />)
 })
 
 nds.db = () => ({
