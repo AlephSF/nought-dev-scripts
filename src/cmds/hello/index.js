@@ -17,9 +17,10 @@ export const helloInfo = { // export it, we'll use it elsewhere
 {cyan.dim Flags}
 {bold -y} || {bold --yes}	Don't prompt for an answer
 
-{cyan.dim Supoorted Dead Poets}
+{cyan.dim Supported Dead Poets}
 {bold bishop} (Elizabeth)
 {bold borges} (Jorge Luis)
+{bold dickinson} (Emily)
 {bold plath}  (Sylvia)
 {bold poe}  (Edgar Allen)
 {bold shakespeare}  (Bill)
@@ -39,6 +40,10 @@ const deadPoets = [
 	{
 		label: 'Jorge Luis Borges',
 		value: 'borges'
+	},
+	{
+		label: 'Emily Dickinson',
+		value: 'dickinson'
 	},
 	{
 		label: 'Sylvia Plath',

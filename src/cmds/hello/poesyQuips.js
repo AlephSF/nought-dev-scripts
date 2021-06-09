@@ -1,6 +1,7 @@
 export default {
 	bishop: 'The whole shadow of Man is only as big as his hat.',
 	borges: 'A thousand years will pass and an old man\nwill dream of you in America',
+	dickinson: 'I heard a Fly buzz – when I died – ',
 	plath: 'Out of the ash\nI rise with my red hair\nAnd I eat men like air.',
 	poe: 'Thrilling to think, poor child of sin!\nIt was the dead who groaned within.',
 	shakespeare: 'For we, which now behold these present days,\nHave eyes to wonder, but lack tongues to praise.',

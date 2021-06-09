@@ -9,6 +9,7 @@ import Build, { buildInfo } from './cmds/build'
 import Db, { dbInfo } from './cmds/db'
 import Hello, { helloInfo } from './cmds/hello'
 import Nds from './cmds/nds'
+import Lint, { lintInfo } from './cmds/lint'
 import Logo, { logoInfo } from './cmds/logo'
 import Shell, { shellInfo } from './cmds/shell'
 import Start, { startInfo } from './cmds/start'
@@ -19,7 +20,7 @@ import Wp, { wpInfo } from './cmds/wp'
 const listedCmds = [
 	buildInfo,
 	dbInfo,
-	startInfo,
+	lintInfo,
 	shellInfo,
 	startInfo,
 	stopInfo,
@@ -72,11 +73,11 @@ nds.hello = () => ({
 	action: ({input, flags, showHelp}) => render(<Hello input={input} flags={flags} showHelp={showHelp} />)
 })
 
-nds.hello = () => ({
-	cli: meow(helloInfo.help, {
-		description: chalk`{bold.cyan "${helloInfo.name}"} {cyan.dim ${helloInfo.desc}}`,
+nds.lint = () => ({
+	cli: meow(lintInfo.help, {
+		description: chalk`{bold.cyan "${lintInfo.name}"} {cyan.dim ${lintInfo.desc}}`,
 	}),
-	action: ({input, flags, showHelp}) => render(<Hello input={input} flags={flags} showHelp={showHelp} />)
+	action: ({input, flags, showHelp}) => render(<Lint input={input} flags={flags} showHelp={showHelp} />)
 })
 
 nds.logo = () => ({
