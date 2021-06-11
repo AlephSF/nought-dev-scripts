@@ -102,7 +102,7 @@ nds.project = () => ({
 	cli: meow(projectInfo.help, {
 		description: chalk`{bold.cyan "${projectInfo.name}"} {cyan.dim ${projectInfo.desc}}`,
 	}),
-	action: ({input, showHelp}) => render(<Project input={input} showHelp={showHelp}/>)
+	action: ({input, flags, showHelp}) => render(<Project input={input} flags={flags} showHelp={showHelp}/>)
 })
 
 nds.shell = () => ({

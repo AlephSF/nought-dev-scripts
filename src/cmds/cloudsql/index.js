@@ -28,15 +28,15 @@ const CloudSql = ({input, showHelp}) => {
 		switch (input[1]) {
 			case 'start':
 				cmdToRun = `docker network create cloud_sql_proxy
-docker run -d --network cloud_sql_proxy --name cloud_sql_proxy -p 127.0.0.1:3306:3306 -v ~/.config/gcloud/application_default_credentials.json:/config gcr.io/cloudsql-docker/gce-proxy:1.19.1 /cloud_sql_proxy -instances=aleph-infra:us-west1:destructible-sandbox=tcp:0.0.0.0:3306 -credential_file=/config
-				`
+docker run -d --network cloud_sql_proxy --name cloud_sql_proxy -p 127.0.0.1:3306:3306 -v ~/.config/gcloud/application_default_credentials.json:/config gcr.io/cloudsql-docker/gce-proxy:1.19.1 /cloud_sql_proxy -instances=aleph-infra:us-west1:destructible-sandbox=tcp:0.0.0.0:3306 -credential_file=/config`
 				break;
 	
 			case 'stop':
 				cmdToRun = `docker stop cloud_sql_proxy
-docker network rm cloud_sql_proxy
-				`
+docker rm cloud_sql_proxy
+docker network rm cloud_sql_proxy`
 				break;
+
 			default:
 				break;
 		}
