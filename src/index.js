@@ -8,6 +8,7 @@ import chalk from 'chalk'
 import Build, { buildInfo } from './cmds/build'
 import CloudSql, { cloudsqlInfo } from './cmds/cloudsql'
 import Db, { dbInfo } from './cmds/db'
+import Docker, { dockerInfo } from './cmds/docker'
 import Hello, { helloInfo } from './cmds/hello'
 import Nds from './cmds/nds'
 import Lint, { lintInfo } from './cmds/lint'
@@ -23,6 +24,7 @@ const listedCmds = [
 	buildInfo,
 	cloudsqlInfo,
 	dbInfo,
+	dockerInfo,
 	lintInfo,
 	projectInfo,
 	shellInfo,
@@ -75,6 +77,13 @@ nds.db = () => ({
 		description: chalk`{bold.cyan "${dbInfo.name}"} {cyan.dim ${dbInfo.desc}}`,
 	}),
 	action: ({input, flags, showHelp}) => render(<Db input={input} flags={flags} showHelp={showHelp} />)
+})
+
+nds.docker = () => ({
+	cli: meow(dockerInfo.help, {
+		description: chalk`{bold.cyan "${dockerInfo.name}"} {cyan.dim ${dockerInfo.desc}}`,
+	}),
+	action: ({input, showHelp}) => render(<Docker input={input} showHelp={showHelp} />)
 })
 
 nds.hello = () => ({

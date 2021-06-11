@@ -69,11 +69,11 @@ nds cloudsql start
 docker run --network cloud_sql_proxy -e "DB_HOST=cloud_sql_proxy:3306" -e "DB_USER=proxyadmin" -e "DB_PASSWORD=" -e "DB_NAME=${projectSlug}-edge"  -e "WP_HOME=https://${projectSlug}-edge.phela.dev" -e "WP_SITEURL=https://${projectSlug}-edge.phela.dev/wp" gcr.io/aleph-infra/nought-wp:v0.0.1 sh -c "/start.sh && wp core install --url=https://${projectSlug}-edge.phela.dev --title=temp --admin_user=temp --admin_email=temp@example.com --admin_password=temp --allow-root && wp plugin activate wp-migrate-db-pro wp-migrate-db-pro-cli --allow-root"
 docker run --network cloud_sql_proxy -e "DB_HOST=cloud_sql_proxy:3306" -e "DB_USER=proxyadmin" -e "DB_PASSWORD=" -e "DB_NAME=${projectSlug}-prs"  -e "WP_HOME=https://${projectSlug}-prs.phela.dev" -e "WP_SITEURL=https://${projectSlug}-prs.phela.dev/wp" gcr.io/aleph-infra/nought-wp:v0.0.1 sh -c "/start.sh && wp core install --url=https://${projectSlug}-prs.phela.dev --title=temp --admin_user=temp --admin_email=temp@example.com --admin_password=temp --allow-root && wp plugin activate wp-migrate-db-pro wp-migrate-db-pro-cli --allow-root"`
 					
-				if(flags.sync && migrateDbUrl){
-					instructions = `${instructions}
-docker run --network cloud_sql_proxy -e "DB_HOST=cloud_sql_proxy:3306" -e "DB_USER=proxyadmin" -e "DB_PASSWORD=" -e "DB_NAME=${projectSlug}-edge"  -e "WP_HOME=https://${projectSlug}-edge.phela.dev" -e "WP_SITEURL=https://${projectSlug}-edge.phela.dev/wp" gcr.io/aleph-infra/nought-wp:v0.0.1 sh -c "/start.sh && wp migratedb pull ${migrateDbUrl} --allow-root"
-docker run --network cloud_sql_proxy -e "DB_HOST=cloud_sql_proxy:3306" -e "DB_USER=proxyadmin" -e "DB_PASSWORD=" -e "DB_NAME=${projectSlug}-prs"  -e "WP_HOME=https://${projectSlug}-prs.phela.dev" -e "WP_SITEURL=https://${projectSlug}-prs.phela.dev/wp" gcr.io/aleph-infra/nought-wp:v0.0.1 sh -c "/start.sh && wp migratedb pull ${migrateDbUrl} --allow-root"`
-				}
+// 				if(flags.sync && migrateDbUrl){
+// 					instructions = `${instructions}
+// docker run --network cloud_sql_proxy -e "DB_HOST=cloud_sql_proxy:3306" -e "DB_USER=proxyadmin" -e "DB_PASSWORD=" -e "DB_NAME=${projectSlug}-edge"  -e "WP_HOME=https://${projectSlug}-edge.phela.dev" -e "WP_SITEURL=https://${projectSlug}-edge.phela.dev/wp" gcr.io/aleph-infra/nought-wp:v0.0.1 sh -c "/start.sh && wp migratedb pull ${migrateDbUrl} --allow-root"
+// docker run --network cloud_sql_proxy -e "DB_HOST=cloud_sql_proxy:3306" -e "DB_USER=proxyadmin" -e "DB_PASSWORD=" -e "DB_NAME=${projectSlug}-prs"  -e "WP_HOME=https://${projectSlug}-prs.phela.dev" -e "WP_SITEURL=https://${projectSlug}-prs.phela.dev/wp" gcr.io/aleph-infra/nought-wp:v0.0.1 sh -c "/start.sh && wp migratedb pull ${migrateDbUrl} --allow-root"`
+// 				}
 
 				instructions = `${instructions}
 nds cloudsql stop`
