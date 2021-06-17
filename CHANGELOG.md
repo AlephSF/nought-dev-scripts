@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.15...v0.0.16) (2021-06-17)
+
+
+### Bug Fixes
+
+* Add token to nds start ([b2c9b1c](https://github.com/AlephSF/nought-dev-scripts/commit/b2c9b1ccc081af99b88b4b03700989c1a176c553))
+
 ### [0.0.15](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.14...v0.0.15) (2021-06-17)
 
 
