@@ -44,42 +44,45 @@ const Start = () => {
 	const [errorMsg, setErrorMsg] = useState(false);
 
 
-	useEffect(async () => {
-		if(projectType && !getConfig('projectType')){
-			// type isn't in config but we know what it is now, so set it in stone
-			setConfig({projectType})
+	useEffect(() => {
+		const maybeRunCommand = async () => {
+			if(projectType && !getConfig('projectType')){
+				// type isn't in config but we know what it is now, so set it in stone
+				setConfig({projectType})
+			}
+
+			// make sure there's a Dockerfile
+			if(projectType && !existsSync('docker-compose.yml')){
+				setErrorMsg('No docker-compose.yml present in the current directory, so I\'m gonna bail.')
+			}
+
+			// spawn('sh', ['-c', ''], { stdio: 'inherit', env: {...process.env, 'PROJECT_NAME': projectName, 'THEME_DIR': themeDirs[0]}})
+			
+			let env = {'PROJECT_NAME': projectName}
+			let cmdPrefix = ''
+			const themeDirs = projectType =='noughtWp' && getDirectories('themes') // see if there's a WP theme in here
+			switch (projectType) {
+				case 'noughtWp':
+					// Only works if there's a single dir in themes.. TODO: fix this
+					const token = await getToken()
+					env = {'PROJECT_NAME': projectName, 'THEME_DIR': themeDirs[0], 'WPMDB_LICENCE': token}
+					break;
+			
+				case 'wpVip':
+					cmdPrefix = 'docker compose pull && '
+					break;
+			
+				default:
+					break;
+			}
+
+			// run it!
+			if(projectType && existsSync('docker-compose.yml')){
+				shellCmd(`${cmdPrefix}docker compose up`, env)
+			}
 		}
 
-		// make sure there's a Dockerfile
-		if(projectType && !existsSync('docker-compose.yml')){
-			setErrorMsg('No docker-compose.yml present in the current directory, so I\'m gonna bail.')
-		}
-
-		// spawn('sh', ['-c', ''], { stdio: 'inherit', env: {...process.env, 'PROJECT_NAME': projectName, 'THEME_DIR': themeDirs[0]}})
-		
-		let env = {'PROJECT_NAME': projectName}
-		let cmdPrefix = ''
-		const themeDirs = projectType =='noughtWp' && getDirectories('themes') // see if there's a WP theme in here
-		switch (projectType) {
-			case 'noughtWp':
-				// Only works if there's a single dir in themes.. TODO: fix this
-				const token = await getToken()
-				env = {'PROJECT_NAME': projectName, 'THEME_DIR': themeDirs[0], 'WPMDB_LICENCE': token}
-				break;
-		
-			case 'wpVip':
-				cmdPrefix = 'docker compose pull && '
-				break;
-		
-			default:
-				break;
-		}
-
-		// run it!
-		if(projectType && existsSync('docker-compose.yml')){
-			shellCmd(`${cmdPrefix}docker compose up`, env)
-		}
-
+		maybeRunCommand()
 	}, [projectType])
 
 	return (
