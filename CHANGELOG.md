@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.14...v0.0.15) (2021-06-17)
+
+
+### Features
+
+* Add Cloud SQL Proxy ([03c0aa1](https://github.com/AlephSF/nought-dev-scripts/commit/03c0aa14f24b6e60d3b42c2b529151c8eff3caeb))
+* Add Docker shortcut ([c3d155d](https://github.com/AlephSF/nought-dev-scripts/commit/c3d155d0abdc89c29d27edd76488c9be82816ae0))
+* Add linting and hello cmds ([029d4fe](https://github.com/AlephSF/nought-dev-scripts/commit/029d4feafdee130e936a352798b77c138d9cec02))
+* Add project create command ([95c4ea3](https://github.com/AlephSF/nought-dev-scripts/commit/95c4ea344ac2c1631a788eb7ec749dc59809babe))
+* Tweak project and cloud sql proxy ([9d86c4b](https://github.com/AlephSF/nought-dev-scripts/commit/9d86c4bd43e7ebae669d0072ec9cb35d704ae03a))
+
+
+### Bug Fixes
+
+* Unfuck wp init feature ([68a3950](https://github.com/AlephSF/nought-dev-scripts/commit/68a39503b0ac55187fc13760e6135227ce7630d4))
+
 ### [0.0.14](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.13...v0.0.14) (2021-05-24)
 
 
