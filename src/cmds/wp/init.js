@@ -22,9 +22,9 @@ export default async () => {
 	const token = await getToken()
 
 	const commands = [
-		`nds wp core install --url http://localhost:8080 --title temp --admin_user temp --admin_email temp@example.com --admin_password=temp`,
+		`nds wp core install --url http://localhost:8080 --title AlephNought --admin_user superuser --admin_email ping@alephsf.com --admin_password=noughtagoodpassword`,
 		`nds wp plugin activate wp-migrate-db-pro wp-migrate-db-pro-cli`,
-		`nds wp config set --anchor='/**' WPMDB_LICENCE ${token}`
+		// `nds wp config set --anchor='/**' WPMDB_LICENCE ${token}`
 	]
 	const command = commands.join(' && ')
 	shellCmd(command)
