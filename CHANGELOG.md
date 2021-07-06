@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.16...v0.0.17) (2021-07-06)
+
+
+### Features
+
+* Update project create ([9a860c7](https://github.com/AlephSF/nought-dev-scripts/commit/9a860c7fad734dd7dd9b3f1202a292a5187e5862))
+
 ### [0.0.16](https://github.com/AlephSF/nought-dev-scripts/compare/v0.0.15...v0.0.16) (2021-06-17)
 
 
