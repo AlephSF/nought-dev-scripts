@@ -71,6 +71,12 @@ const Wp = ({input, flags}) => {
 				cli({input, flags})
 			}
 
+// install test data TODO
+
+// wp plugin install wordpress-importer --activate --allow-root
+// curl -OL https://raw.githubusercontent.com/poststatus/wptest/master/wptest.xml
+// wp import wptest.xml --authors=create --allow-root
+
 		}
 
 	}, [projectType, migrateDbUrl])

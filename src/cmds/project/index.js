@@ -43,13 +43,21 @@ const Project = ({input, flags, showHelp}) => {
 		if(projectSlug && projectType){
 
 			let templateRepoFlag = ''
+			let setUpstream = ''
 			switch (projectType) {
 				case 'noughtWp':
 					templateRepoFlag = ' --template AlephSF/nought-wp'
+					setUpstream = 'git remote add nought git@github.com:AlephSF/nought-wp.git && git pull nought main --allow-unrelated-histories'
+					break;
+
+				case 'wpVip':
+					templateRepoFlag = ' --template AlephSF/nought-wpvip-dev'
+					setUpstream = 'git remote add nought git@github.com:AlephSF/nought-wpvip-dev.git && git pull nought main --allow-unrelated-histories'
 					break;
 
 				case 'next':
 					templateRepoFlag = ' --template AlephSF/nought-nextjs'
+					setUpstream = 'git remote add nought git@github.com:AlephSF/nought-nextjs.git && git pull nought main --allow-unrelated-histories'
 					break;
 					
 				default:
@@ -59,7 +67,8 @@ const Project = ({input, flags, showHelp}) => {
 mv .ndsconfig.json ${projectSlug}/.ndsconfig.json
 cd ${projectSlug} 
 gh repo create AlephSF/${projectSlug} --confirm --private${templateRepoFlag}
-git pull origin main`
+git pull origin main
+${setUpstream}`
 
 			if(flags.createEnvDbs && projectType === 'noughtWp'){
 				instructions = `${instructions}

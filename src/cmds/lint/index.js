@@ -12,6 +12,7 @@ export const lintInfo = {
 
 {cyan.dim Flags}
 {bold -f} || {bold --fix}	Automatically fix errors if possible	{dim (Default: false)}
+{bold --report}	Generate a CSV Report of all errors	{dim (Default: false)}
 
 {cyan.dim Examples}
 {bold lint php}
@@ -31,6 +32,7 @@ const Lint = ({input, flags, showHelp}) => {
 			switch (input[1]) {
 				case 'php':
 					cmd = flags.fix ? './vendor/bin/phpcbf' : './vendor/bin/phpcs'
+					cmd += flags.report ? ' --report=csv  --report-file=./phpcs-results.csv' : ''
 					break;
 			
 				default:
