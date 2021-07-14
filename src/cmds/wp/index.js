@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import open from 'open'
 import wpInit from './init'
 import cli from './cli'
+import getSecret from '../../utils/getSecret'
 import shellCmd from '../../utils/shellCmd'
 import Ask from '../config/Ask'
 import ErrorMsg from '../error'
@@ -61,7 +62,9 @@ const Wp = ({input, flags}) => {
 					if(!getConfig('migrateDbUrl')){
 						setConfig({migrateDbUrl})
 					}
-					shellCmd(`nds wp migratedb pull ${migrateDbUrl}`)
+					getSecret('migrate_db_pro_key').then((token) => {
+						shellCmd(`nds wp config set --anchor='/**' WPMDB_LICENCE ${token} && nds wp migratedb pull ${migrateDbUrl}`)
+					})
 				}
 			} else if(input[1] === 'docs'){
 				const base = 'https://developer.wordpress.org/cli/commands/'
