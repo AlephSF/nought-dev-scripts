@@ -63,7 +63,7 @@ const Wp = ({input, flags}) => {
 						setConfig({migrateDbUrl})
 					}
 					getSecret('migrate_db_pro_key').then((token) => {
-						shellCmd(`nds wp config set --anchor='/**' WPMDB_LICENCE ${token} && nds wp migratedb pull ${migrateDbUrl}`)
+						shellCmd(`nds wp migratedb pull ${migrateDbUrl}`)
 					})
 				}
 			} else if(input[1] === 'docs'){

@@ -14,6 +14,7 @@ const snakeCaseTheseSillyKeys =[
 	'admin-user',
 	'admin-password',
 	'admin-email',
+	'post-type'
 ]
 
 export default ({input, flags}) => {

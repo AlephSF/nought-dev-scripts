@@ -18,6 +18,7 @@ export const projectInfo = {
 
 {cyan.dim Flags}
 {bold --create-env-dbs}	Will create edge and pr sql DBs for WP Nought projects
+{bold --repo-exists}		Won't create anything in Github, used with existing projects (creates databases automatically)
 
 {cyan.dim Examples}
 {bold project create my-project-someplatform}
@@ -63,14 +64,18 @@ const Project = ({input, flags, showHelp}) => {
 				default:
 					break;
 			}
-			let instructions = `git init ${projectSlug}
+			let instructions = '' 
+
+			if(!flags.repoExists){
+				instructions = `${instructions}
+git init ${projectSlug}
 mv .ndsconfig.json ${projectSlug}/.ndsconfig.json
 cd ${projectSlug} 
 gh repo create AlephSF/${projectSlug} --confirm --private${templateRepoFlag}
 git pull origin main
 ${setUpstream}`
-
-			if(flags.createEnvDbs && projectType === 'noughtWp'){
+			} 
+			if((flags.createEnvDbs || flags.repoExists) && projectType === 'noughtWp'){
 				instructions = `${instructions}
 gcloud sql databases create ${projectSlug}-edge  --instance=destructible-sandbox
 gcloud sql databases create ${projectSlug}-prs  --instance=destructible-sandbox
